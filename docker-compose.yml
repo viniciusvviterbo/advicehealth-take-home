@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: advicehealth-db
+    restart: unless-stopped
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'Norktowndb'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password_user'
+      MYSQL_ROOT_PASSWORD: 'password_root'
+    volumes:
+      - ./db/scripts/start-up.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/data-volume:/var/lib/mysql
+    networks:
+      - norktownnetwork
+      
+  app:
+    build: .
+    container_name: advicehealth-app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: production
+      FLASK_APP: carford.app:create_app
+    depends_on:
+        - db
+    networks:
+      - norktownnetwork
+
+volumes:
+  db-data:
+
+networks:
+  norktownnetwork:

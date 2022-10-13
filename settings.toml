@@ -1,0 +1,11 @@
+[default]
+TITLE = "Carford"
+EXTENSIONS = [
+    "carford.blueprints.restapi",
+    "carford.blueprints.webui",
+    "carford.ext.admin",
+    "carford.ext.appearance",
+    "carford.ext.auth",
+    "carford.ext.database",
+]
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://root:password_root@db/Norktowndb"

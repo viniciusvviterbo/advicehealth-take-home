@@ -1,0 +1,32 @@
+{% extends "index.html" %} {% block content %}
+<div class="container">
+    <h2><b>{{ person.firstName }} {{ person.lastName }}</b></h2>
+
+    <h3>
+        {% if cars|length == 0 %}
+        <div class="alert alert-success" role="alert">
+            This person is a business Opportunity!
+        </div>
+        {% endif %}
+    </h3>
+
+    <div class="jumbotron">
+        <ul class="list-group">
+            {% if cars|length == 0 %}
+            <div style="display: flex; justify-content: center">
+                (This person doesn't have any cars yet.)
+            </div>
+            {% endif %} {% for car in cars %}
+            <li class="list-group-item">
+                <a
+                    style="font-size: 1.3em"
+                    href="{{url_for('webui.carview', car_id=car.id)}}"
+                >
+                    Car {{car.id}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

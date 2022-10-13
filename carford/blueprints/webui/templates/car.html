@@ -1,0 +1,11 @@
+{% extends "index.html" %} {% block content %}
+<div class="container">
+    <h2><b>Car #{{ car.id }}</b></h2>
+
+    <div class="jumbotron">
+        <h3>Owner: {{ person.firstName }} {{ person.lastName }}</h3>
+        <h3>Model: {{car.model.name}}</h3>
+        <h3>Color: {{car.color.name}}</h3>
+    </div>
+</div>
+{% endblock %}
